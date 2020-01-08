@@ -84,7 +84,9 @@ private PostRepository repository;
     }
 
     public void createPost(Post post1) {
-
+        post1.setDate(new Date());
+        repository.createPost(post1);
+        System.out.println("new post : "+post1);
     }
 
 }

@@ -3,10 +3,7 @@ package technicalblog.repository;
 import org.springframework.stereotype.Repository;
 import technicalblog.model.Post;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -25,5 +22,18 @@ public class PostRepository {
     public Post getLatestPost(){
         EntityManager em = emf.createEntityManager();
         return em.find(Post.class,2);
+    }
+
+    public Post createPost(Post newPost){
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try {
+            et.begin();
+            em.persist(newPost);
+            et.commit();
+        }catch (Exception e){
+            et.rollback();
+        }
+        return newPost;
     }
 }

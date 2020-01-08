@@ -10,6 +10,7 @@ import technicalblog.services.PostService;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class PostController {
@@ -17,9 +18,9 @@ public class PostController {
     private PostService postService;
 
     @RequestMapping("posts")
-    public String getUserPosts(Model model) {
-        ArrayList<Post> posts = new ArrayList<>();
-        posts.add(postService.getOnePost());
+    public String getUserPosts(Model model) throws SQLException {
+        List<Post> posts = postService.getAllPosts();
+//        posts.add(postService.getOnePost());
         model.addAttribute("posts", posts);
         return "posts";
     }
