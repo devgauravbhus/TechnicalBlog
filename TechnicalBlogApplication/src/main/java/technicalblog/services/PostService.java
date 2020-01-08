@@ -1,7 +1,9 @@
 package technicalblog.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import technicalblog.model.Post;
+import technicalblog.repository.PostRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,10 +16,8 @@ import java.util.List;
 
 @Service
 public class PostService {
-
-    @PersistenceUnit(unitName = "techblog")
-    private EntityManagerFactory emf;
-
+@Autowired
+private PostRepository repository;
     public List<Post> getAllPosts() throws SQLException {
 //        Post post = new Post();
 //        post.setTitle("Post 1");
@@ -38,9 +38,6 @@ public class PostService {
 //        posts.add(post);
 //        posts.add(post2);
 //        posts.add(post3);
-        EntityManager em = emf.createEntityManager();
-        TypedQuery<Post> query = em.createQuery("SELECT p from Post p", Post.class);
-        List<Post> resultList = query.getResultList();
 //        Connection connection = null;
 //        try{
 //            Class.forName("org.postgresql.Driver");
@@ -59,31 +56,30 @@ public class PostService {
 //        }finally {
 //            connection.close();
 //        }
-        return resultList;
+        return repository.getAllPosts();
     }
+    public Post getOnePost() {
+//        ArrayList<Post> posts = new ArrayList<>();
+//        Connection connection = null;
+//        try{
+//            Class.forName("org.postgresql.Driver");
+//
+//            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/technicalblog","postgres", "Imy42~*HII");
+//            Statement statement = connection.createStatement();
+//            ResultSet rs = statement.executeQuery("SELECT * FROM posts order by id desc limit 1");
+//            while(rs.next()){
+//                Post post = new Post();
+//                post.setTitle(rs.getString("title"));
+//                post.setBody(rs.getString("body"));
+//                posts.add(post);
+//            }
+//        } catch (ClassNotFoundException | SQLException e) {
+//            e.printStackTrace();
+//        }finally {
+//            connection.close();
+//        }
 
-    public ArrayList<Post> getOnePost() throws SQLException {
-        ArrayList<Post> posts = new ArrayList<>();
-        Connection connection = null;
-        try {
-            Class.forName("org.postgresql.Driver");
-
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/technicalblog", "postgres", "Imy42~*HII");
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM posts order by id desc limit 1");
-            while (rs.next()) {
-                Post post = new Post();
-                post.setTitle(rs.getString("title"));
-                post.setBody(rs.getString("body"));
-                posts.add(post);
-            }
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        } finally {
-            connection.close();
-        }
-
-        return posts;
+        return repository.getLatestPost();
 
     }
 

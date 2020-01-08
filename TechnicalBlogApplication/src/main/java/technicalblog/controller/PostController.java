@@ -18,23 +18,18 @@ public class PostController {
 
     @RequestMapping("posts")
     public String getUserPosts(Model model) {
-        ArrayList<Post> posts = null;
-        try {
-            posts = postService.getOnePost();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        ArrayList<Post> posts = new ArrayList<>();
+        posts.add(postService.getOnePost());
         model.addAttribute("posts", posts);
         return "posts";
     }
-
     @RequestMapping("/posts/newpost")
     public String newPost() {
         return "posts/create";
     }
 
     @RequestMapping(value = "/posts/create", method = RequestMethod.POST)
-    public String createPost(Post newPost, Model model) {
+    public String createPost(Post newPost,Model model) {
         postService.createPost(newPost);
         return "redirect:/posts";
     }

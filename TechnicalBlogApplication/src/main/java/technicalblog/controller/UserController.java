@@ -32,28 +32,27 @@ public class UserController {
         return "users/registration";
     }
 
-    @RequestMapping(value = "users/login", method = RequestMethod.POST)
+    @RequestMapping(value = "users/login",method = RequestMethod.POST)
     public String userlogin(User user) {
-        if (userService.login(user)) {
+        if(userService.login(user)) {
             return "redirect:/posts";
-        } else {
+        }
+        else {
             return "users/login";
         }
     }
-
-    @RequestMapping(value = "users/logout", method = RequestMethod.POST)
+    @RequestMapping(value = "users/logout",method = RequestMethod.POST)
     public String logout(Model model) {
-        List<Post> posts = null;
+        List<Post> posts= null;
         try {
             posts = postService.getAllPosts();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        model.addAttribute("posts", posts);
+        model.addAttribute("posts",posts);
         return "index";
     }
-
-    @RequestMapping(value = "users/registration", method = RequestMethod.POST)
+    @RequestMapping(value = "users/registration", method=RequestMethod.POST)
     public String registerUser(User user) {
         return "redirect:/users/login";
     }

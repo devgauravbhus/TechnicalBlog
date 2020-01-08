@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 public class JpaConfig {
 
     @Bean
-    public EntityManagerFactory entityManagerFactory() {
+    public EntityManagerFactory entityManagerFactory(){
         LocalContainerEntityManagerFactoryBean emfb = new LocalContainerEntityManagerFactoryBean();
         emfb.setPersistenceXmlLocation("classpath:META-INF/per.xml");
         emfb.afterPropertiesSet();
@@ -20,7 +20,7 @@ public class JpaConfig {
     }
 
     @Bean
-    public DataSource dataSource() {
+    public DataSource dataSource(){
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName("org.postgresql.Driver");
         ds.setUrl("jdbc:postgresql://localhost:5432/technicalblog");

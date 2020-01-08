@@ -18,14 +18,14 @@ public class HomeController {
     private PostService postService;
 
     @RequestMapping("/")
-    public String getAllPost(Model model) {
-        List<Post> posts = null;
+    public String getAllPost(Model model){
+        List<Post> posts= null;
         try {
             posts = postService.getAllPosts();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        model.addAttribute("posts", posts);
+        model.addAttribute("posts",posts);
         return "index";
     }
 }
