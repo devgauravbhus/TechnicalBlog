@@ -42,7 +42,7 @@ private PostRepository repository;
 //        try{
 //            Class.forName("org.postgresql.Driver");
 //
-//            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/technicalblog","postgres", "Imy42~*HII");
+//            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/technicalblog","postgres", "pass");
 //            Statement statement = connection.createStatement();
 //            ResultSet rs = statement.executeQuery("SELECT * FROM posts");
 //            while(rs.next()){
@@ -64,7 +64,7 @@ private PostRepository repository;
 //        try{
 //            Class.forName("org.postgresql.Driver");
 //
-//            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/technicalblog","postgres", "Imy42~*HII");
+//            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/technicalblog","postgres", "pass");
 //            Statement statement = connection.createStatement();
 //            ResultSet rs = statement.executeQuery("SELECT * FROM posts order by id desc limit 1");
 //            while(rs.next()){

@@ -25,7 +25,7 @@ public class JpaConfig {
         ds.setDriverClassName("org.postgresql.Driver");
         ds.setUrl("jdbc:postgresql://localhost:5432/technicalblog");
         ds.setUsername("postgres");
-        ds.setPassword("Imy42~*HII");
+        ds.setPassword("");
         return ds;
     }
 }
