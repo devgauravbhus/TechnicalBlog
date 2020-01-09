@@ -42,7 +42,7 @@ private PostRepository repository;
 //        try{
 //            Class.forName("org.postgresql.Driver");
 //
-//            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/technicalblog","postgres", "pass");
+//            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/technicalblog","postgres", "Imy42~*HII");
 //            Statement statement = connection.createStatement();
 //            ResultSet rs = statement.executeQuery("SELECT * FROM posts");
 //            while(rs.next()){
@@ -64,7 +64,7 @@ private PostRepository repository;
 //        try{
 //            Class.forName("org.postgresql.Driver");
 //
-//            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/technicalblog","postgres", "pass");
+//            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/technicalblog","postgres", "Imy42~*HII");
 //            Statement statement = connection.createStatement();
 //            ResultSet rs = statement.executeQuery("SELECT * FROM posts order by id desc limit 1");
 //            while(rs.next()){
@@ -88,5 +88,15 @@ private PostRepository repository;
         repository.createPost(post1);
         System.out.println("new post : "+post1);
     }
+    public Post getPost(Integer postId){
+        return repository.getPost(postId);
+    }
 
+    public void updatePost(Post updatedPost){
+        updatedPost.setDate(new Date());
+        repository.updatePost(updatedPost);
+    }
+    public void deletePost(Integer postId){
+        repository.deletePost(postId);
+    }
 }
